@@ -3,11 +3,21 @@ entries:
   example-chart:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2020-07-22T20:11:10.065988871Z"
+    created: "2020-07-22T20:12:55.764863293Z"
     description: A Helm chart for Kubernetes
-    digest: b62134188fc67d1c45eff38b4cbbb1250c9439ee719b777ae0da10e47ec119ac
+    digest: 05ff2491e9dc2fd511f8f2fbf1e243e8ed1735e12013e2a57eb81521086e365f
     name: example-chart
     urls:
     - example-chart/example-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2020-07-22T20:11:10.065125431Z"
+  example-chart2:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: "2020-07-22T20:12:55.765663087Z"
+    description: A Helm chart for Kubernetes
+    digest: 198fe01455fbd1f4379aa555140071e9f81cdbe8cb1d245ae5cc6c9efcf5d5c6
+    name: example-chart2
+    urls:
+    - example-chart2/example-chart2-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-07-22T20:12:55.764385298Z"
