@@ -1,0 +1,24 @@
+language: minimal
+
+sudo: false
+
+branches:
+  only:
+    - master
+
+before_install:
+  - .ci/setup.sh
+
+script:
+  - .ci/build.sh
+
+deploy:
+  provider: pages
+  github_token: $GITHUB_TOKEN
+  local_dir: gh-pages
+  target_branch: gh-pages
+  verbose: true
+  skip_cleanup: true
+  keep_history: true
+  on:
+    branch: master
