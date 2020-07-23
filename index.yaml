@@ -1,0 +1,24 @@
+apiVersion: v1
+entries:
+  tasmoadmin:
+  - apiVersion: v1
+    appVersion: v1.6.3
+    created: "2020-07-23T01:27:25.050534357Z"
+    description: Centrally manage all your Sonoff-Tasmota devices.
+    digest: 5360c0f59e8135c12d60b063d38ec01dac38ffa0e47174625670b2f63c24a0ac
+    engine: gotpl
+    home: https://github.com/imduffy15/charts/tasmoadmin
+    icon: https://raw.githubusercontent.com/reloxx13/TasmoAdmin/master/tasmoadmin/resources/img/logo_small.PNG
+    keywords:
+    - tasmoadmin
+    kubeVersion: '>=1.10.0-0'
+    maintainers:
+    - email: ian@ianduffy.ie
+      name: Ian Duffy
+    name: tasmoadmin
+    sources:
+    - https://github.com/reloxx13/TasmoAdmin
+    urls:
+    - tasmoadmin/tasmoadmin-0.0.1.tgz
+    version: 0.0.1
+generated: "2020-07-23T01:27:25.050031433Z"
