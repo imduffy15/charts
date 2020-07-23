@@ -1,0 +1,91 @@
+# Default values for mosquitto.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: homeassistant/amd64-addon-mosquitto
+  tag: 5.1
+  pullPolicy: Always
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+config:
+  logins:
+    - username: admin
+      password: admin
+  anonymous: false
+  customize:
+    active: false
+    folder: mosquitto
+  certfile: fullchain.pem
+  cafile: fullchain.pem
+  keyfile: privkey.pem
+  require_certificate: false
+
+certs:
+  cafile: |-
+    -----BEGIN CERTIFICATE-----
+    CA_CERT
+    -----END CERTIFICATE-----
+  certfile: |-
+    -----BEGIN CERTIFICATE-----
+    SERVER_CERT
+    -----END CERTIFICATE-----
+  keyfile: |-
+    -----BEGIN CERTIFICATE-----
+    SERVER_KEY
+    -----END CERTIFICATE-----
+
+existingSecret: ""
+
+service:
+  type: LoadBalancer
+  annotations: {}
+  ports:
+    mqtt: 1883
+    websocket: 1884
+    mqtts: 8883
+    websockets: 8884
+  targetPorts:
+    mqtt: mqtt
+    websocket: websocket
+    mqtts: mqtts
+    websockets: websockets
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+persistence:
+  enabled: true
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  ##
+  ## If you want to reuse an existing claim, you can pass the name of the PVC using
+  ## the existingClaim variable
+  # existingClaim: your-claim
+  ##
+  ## If you want to use a volume on the host machine instead of a PVC:
+  # hostPath: /path/to/the/config/folder
+  accessMode: ReadWriteOnce
+  size: 5Gi

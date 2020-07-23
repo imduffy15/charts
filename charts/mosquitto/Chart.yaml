@@ -1,0 +1,16 @@
+apiVersion: v1
+name: mosquitto
+version: 0.0.1
+appVersion: v5.1
+home: https://github.com/imduffy15/charts/mosquitto
+description: An Open Source MQTT broker.
+icon: https://mosquitto.org/images/mosquitto-text-side-28.png
+keywords:
+  - mosquitto
+sources:
+  - https://github.com/home-assistant/hassio-addons/tree/master/mosquitto
+maintainers:
+  - name: Ian Duffy
+    email: ian@ianduffy.ie
+engine: gotpl
+kubeVersion: ">=1.10.0-0"
