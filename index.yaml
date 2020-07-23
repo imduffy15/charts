@@ -1,3 +1,45 @@
 apiVersion: v1
-entries: {}
-generated: "2020-07-22T23:58:24.799162625Z"
+entries:
+  mosquitto:
+  - apiVersion: v1
+    appVersion: v5.1
+    created: "2020-07-23T00:35:23.040877862Z"
+    description: An Open Source MQTT broker.
+    digest: fc5d153159b362b22fcded4b3f693183c90c78080c9d55a2d5ae01505be7950e
+    engine: gotpl
+    home: https://github.com/imduffy15/charts/mosquitto
+    icon: https://mosquitto.org/images/mosquitto-text-side-28.png
+    keywords:
+    - mosquitto
+    kubeVersion: '>=1.10.0-0'
+    maintainers:
+    - email: ian@ianduffy.ie
+      name: Ian Duffy
+    name: mosquitto
+    sources:
+    - https://github.com/home-assistant/hassio-addons/tree/master/mosquitto
+    urls:
+    - mosquitto/mosquitto-0.0.1.tgz
+    version: 0.0.1
+  tasmoadmin:
+  - apiVersion: v1
+    appVersion: v0.11.0
+    created: "2020-07-23T00:35:23.041208213Z"
+    description: Centrally manage all your Sonoff-Tasmota devices.
+    digest: 643ad7c1cbde02250d43ce4dea27beaac6ef34c5eae11f52287fd51114d1a7d5
+    engine: gotpl
+    home: https://github.com/imduffy15/charts/tasmoadmin
+    icon: https://raw.githubusercontent.com/reloxx13/TasmoAdmin/master/tasmoadmin/resources/img/logo_small.PNG
+    keywords:
+    - tasmoadmin
+    kubeVersion: '>=1.10.0-0'
+    maintainers:
+    - email: ian@ianduffy.ie
+      name: Ian Duffy
+    name: tasmoadmin
+    sources:
+    - https://github.com/reloxx13/TasmoAdmin
+    urls:
+    - tasmoadmin/tasmoadmin-1.6.3.tgz
+    version: 1.6.3
+generated: "2020-07-23T00:35:23.040360828Z"
