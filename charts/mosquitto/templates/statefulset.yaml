@@ -32,12 +32,6 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name: HASSIO_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: {{ template "mosquitto.secretName" . }}
-                  key: token
           ports:
           {{- range $key, $value := .Values.service.ports }}
             - name: {{ $key }}

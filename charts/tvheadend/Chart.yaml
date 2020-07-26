@@ -1,0 +1,16 @@
+apiVersion: v1
+name: tvheadend
+version: 0.0.1
+appVersion: v4.2
+home: https://github.com/imduffy15/charts/tvheadend
+description: TVHeadend, sometimes TVH for short, is a server application that reads video streams from LinuxTV sources and publishes them as internet streams
+icon: https://dashboard.snapcraft.io/site_media/appmedia/2019/04/tvheadend-logo-cropped.png
+keywords:
+  - tvheadend
+sources:
+  - https://github.com/tvheadend/tvheadend
+maintainers:
+  - name: Ian Duffy
+    email: ian@ianduffy.ie
+engine: gotpl
+kubeVersion: ">=1.10.0-0"
