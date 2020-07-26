@@ -21,10 +21,8 @@ serviceAccount:
   name:
 
 config:
-  logins:
-    - username: admin
-      password: admin
-  anonymous: false
+  logins: []
+  anonymous: true
   customize:
     active: false
     folder: mosquitto
