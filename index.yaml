@@ -3,9 +3,9 @@ entries:
   mosquitto:
   - apiVersion: v1
     appVersion: v5.1
-    created: "2020-07-26T17:01:37.705864734Z"
+    created: "2020-07-26T17:02:07.809078772Z"
     description: An Open Source MQTT broker.
-    digest: 0eb5992b9e639bc5d67c6f9cfcf891c0f3f5b57908502be2bdd75ae83a07d3b9
+    digest: 227431b56c094e7e0dcfa0a611990cd045dceaf401cfe379147c38ee9212c8fd
     engine: gotpl
     home: https://github.com/imduffy15/charts/mosquitto
     icon: https://mosquitto.org/images/mosquitto-text-side-28.png
@@ -24,7 +24,7 @@ entries:
   tasmoadmin:
   - apiVersion: v1
     appVersion: v1.6.3
-    created: "2020-07-26T17:01:37.70657437Z"
+    created: "2020-07-26T17:02:07.809760662Z"
     description: Centrally manage all your Sonoff-Tasmota devices.
     digest: 96c9ea8cd76e3c7d8d0a72f7bb11222d0362a5ea98771d3287fb5d0d95fac108
     engine: gotpl
@@ -45,7 +45,7 @@ entries:
   tvheadend:
   - apiVersion: v1
     appVersion: v4.2
-    created: "2020-07-26T17:01:37.707277729Z"
+    created: "2020-07-26T17:02:07.810525874Z"
     description: TVHeadend, sometimes TVH for short, is a server application that
       reads video streams from LinuxTV sources and publishes them as internet streams
     digest: fbf707c9ab4fe3ed8621c8978def6197837329b6d02cbc639f491ad6474a9b0e
@@ -64,4 +64,4 @@ entries:
     urls:
     - tvheadend/tvheadend-0.0.1.tgz
     version: 0.0.1
-generated: "2020-07-26T17:01:37.704745766Z"
+generated: "2020-07-26T17:02:07.807739626Z"
