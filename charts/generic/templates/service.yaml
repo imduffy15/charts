@@ -1,0 +1,25 @@
+{{- $root := . -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "generic.fullname" . }}
+{{- if .Values.service.annotations }}
+  annotations:
+  {{- range $key, $value := .Values.service.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+  labels:
+{{ include "generic.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    {{- range $key, $value := .Values.service.ports }}
+    - port: {{ $value }}
+      targetPort: {{ index $root.Values.service.targetPorts $key }}
+      protocol: {{ index $root.Values.service.protocol $key | default "TCP" }}
+      name: $key
+    {{- end }}
+  selector:
+    app.kubernetes.io/name: {{ include "generic.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

@@ -1,0 +1,26 @@
+{{- $root := . -}}
+{{- range $key, $value := .Values.persistence }}
+{{- if $value.enabled -}}
+{{- if not $value.existingClaim -}}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ include "generic.fullname" . }}-{{ $key }}
+  labels:
+{{ include "generic.labels" . | indent 4 }}
+spec:
+  accessModes:
+    - {{ $value.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ $value.size | quote }}
+{{- if $value.storageClass }}
+{{- if (eq "-" $value.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ $value.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end -}}
+{{- end -}}
+{{- end -}}

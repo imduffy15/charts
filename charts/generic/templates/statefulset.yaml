@@ -1,0 +1,97 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "generic.fullname" . }}
+  labels:
+{{ include "generic.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "generic.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "generic.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ template "generic.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.hostNetwork }}
+      hostNetwork: {{ .Values.hostNetwork }}
+      dnsPolicy: ClusterFirstWithHostNet
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- range $key, $value := .Values.extraEnv }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+          ports:
+          {{- range $key, $value := .Values.service.ports }}
+            - name: {{ $key }}
+              containerPort: {{ $value }}
+              protocol: TCP
+          {{- end }}
+          volumeMounts:
+          {{ range $key, $value := .Values.persistence }}
+          - mountPath: $value.mountPath
+            name: $key
+          {{ end }}
+          {{- range .Values.hostMounts }}
+          {{- if .mountPath }}
+          - mountPath: {{ .mountPath }}
+          {{- else }}
+          - mountPath: {{ .hostPath }}
+          {{- end }}
+            name: {{ .name }}
+          {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+      {{- range $key, $value := .Values.persistence }}
+      - name: $key
+      {{- if $value.enabled }}
+        {{- if $value.hostPath }}
+        hostPath:
+          path: {{ $value.hostPath}}
+          type: Directory
+        {{- else }}
+        persistentVolumeClaim:
+          claimName: {{ if $value.existingClaim }}{{ $value.existingClaim }}{{- else }}{{ template "generic.fullname" . }}-{{ $key }}{{- end }}
+        {{- end }}
+      {{- else }}
+        emptyDir: {}
+      {{ end }}
+      {{- end }}
+      {{- range .Values.hostMounts }}
+      - name: {{ .name }}
+        hostPath:
+          path: {{.hostPath}}
+          {{- if .type }}
+          type: {{ .type }}
+          {{- end }}
+      {{- end }}

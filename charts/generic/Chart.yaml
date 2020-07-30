@@ -1,0 +1,12 @@
+apiVersion: v1
+name: generic
+version: 0.0.1
+home: https://github.com/imduffy15/charts/generic
+description: Generic chart
+keywords:
+  - generic
+maintainers:
+  - name: Ian Duffy
+    email: ian@ianduffy.ie
+engine: gotpl
+kubeVersion: ">=1.10.0-0"
