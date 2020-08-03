@@ -1,0 +1,88 @@
+# Default values for powerdns.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: imduffy15/powerdns
+  tag: latest
+  pullPolicy: Always
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+podSecurityContext: {}
+
+securityContext: {}
+
+extraEnv:
+  WEBSERVER_ENABLED: "true"
+  WEBSERVER_BIND_ADDRESS: "0.0.0.0"
+  WEBSERVER_PORT: "8081"
+  API_ENABLED: "true"
+  API_KEY: "changeme"
+
+hostNetwork: false
+
+hostMounts: []
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+dnsService:
+  type: LoadBalancer
+  annotations: {}
+  address: ""
+  ports:
+    dnstcp: 53
+    dnsudp: 53
+  targetPorts:
+    dnstcp: dnstcp
+    dnsudp: dnsudp
+  protocol:
+    dnsudp: UDP
+
+httpService:
+  type: ClusterIP
+  annotations: {}
+  ports:
+    http: 8081
+  targetPorts:
+    http: http
+  protocol: {}
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+ingress:
+  enabled: false
+  annotations: {}
+  hosts: []
+  tls: []
+
+mariadb:
+  enabled: true
+  metrics:
+    enabled: true
+  db:
+    user: powerdns
+    password: powerdns
+    name: powerdns
+  replication:
+    enabled: false
+  master:
+    persistence:
+      enabled: false
+  tests:
+    enabled: false

@@ -1,0 +1,12 @@
+apiVersion: v1
+name: powerdns
+version: 0.0.1
+home: https://github.com/imduffy15/charts/powerdns
+description: powerdns chart
+keywords:
+  - powerdns
+maintainers:
+  - name: Ian Duffy
+    email: ian@ianduffy.ie
+engine: gotpl
+kubeVersion: ">=1.10.0-0"

@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "powerdns.fullname" . }}-udp
+{{- if .Values.dnsService.annotations }}
+  annotations:
+  {{- range $key, $value := .Values.dnsService.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+  {{- range $key, $value := .Values.dnsService.dnsUdpAnnotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+  labels:
+{{ include "powerdns.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.dnsService.type }}
+  loadBalancerIP: {{ .Values.dnsService.address }}
+  ports:
+    - port: {{ .Values.dnsService.ports.dnsudp }}
+      targetPort: {{ .Values.dnsService.targetPorts.dnsudp }}
+      protocol: {{ .Values.dnsService.protocol.dnsudp | default "TCP" }}
+      name: dnsudp
+  selector:
+    app.kubernetes.io/name: {{ include "powerdns.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

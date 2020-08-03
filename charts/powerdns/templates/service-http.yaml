@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "powerdns.fullname" . }}-http
+{{- if .Values.httpService.annotations }}
+  annotations:
+  {{- range $key, $value := .Values.httpService.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+  labels:
+{{ include "powerdns.labels" . | indent 4 }}
+spec:
+  type: {{ .Values.httpService.type }}
+  ports:
+    - port: {{ .Values.httpService.ports.http }}
+      targetPort: {{ .Values.httpService.targetPorts.http }}
+      protocol: {{ .Values.httpService.protocol.http | default "TCP" }}
+      name: api
+  selector:
+    app.kubernetes.io/name: {{ include "powerdns.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}

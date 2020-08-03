@@ -18,6 +18,8 @@ echo '>> Building charts...'
 git diff --diff-filter=d --dirstat=files,0 HEAD~1 | awk '{print $2}' | (grep -i -E "charts" || true) | cut -d/ -f2 | sort | uniq | while read chart; do
   pushd /tmp/gh-pages
   chart=$CHARTSDIR/$chart
+  echo ">>> fetching dependencies for $chart"
+  helm dependency build "$chart"
   echo ">>> helm lint $chart"
   helm lint "$chart"
   chart_name="`basename "$chart"`"
