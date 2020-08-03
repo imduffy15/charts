@@ -53,6 +53,7 @@ existingSecret: ""
 service:
   type: LoadBalancer
   annotations: {}
+  address: ""
   ports:
     mqtt: 1883
     websocket: 1884
