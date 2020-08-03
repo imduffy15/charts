@@ -16,8 +16,8 @@ spec:
         app.kubernetes.io/name: {{ include "mosquitto.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     annotations:
-      checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
-      checksum/secrets: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum }}
+      checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum | quote }}
+      checksum/secrets: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum | quote }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
