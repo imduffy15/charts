@@ -12,7 +12,7 @@ metadata:
 {{ include "mosquitto.labels" . | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
-  address: {{ .Values.service.address }}
+  loadBalancerIP: {{ .Values.service.address }}
   ports:
     - port: {{ .Values.service.ports.mqtt }}
       targetPort: {{ .Values.service.targetPorts.mqtt }}

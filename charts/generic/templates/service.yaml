@@ -13,7 +13,7 @@ metadata:
 {{ include "generic.labels" . | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
-  address: {{ .Values.service.address }}
+  loadBalancerIP: {{ .Values.service.address }}
   ports:
     {{- range $key, $value := .Values.service.ports }}
     - port: {{ $value }}

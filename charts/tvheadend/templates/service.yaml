@@ -12,7 +12,7 @@ metadata:
 {{ include "tvheadend.labels" . | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
-  address: {{ .Values.service.address }}
+  loadBalancerIP: {{ .Values.service.address }}
   ports:
     - port: {{ .Values.service.ports.http }}
       targetPort: {{ .Values.service.targetPorts.http }}

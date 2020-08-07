@@ -34,10 +34,8 @@ service:
   type: LoadBalancer
   annotations: {}
   address: ""
-  ports:
-    http: 80
-  targetPorts:
-    http: http
+  ports: {}
+  targetPorts: {}
   protocol: {}
 
 resources: {}
