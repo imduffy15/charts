@@ -19,7 +19,7 @@ spec:
     - port: {{ $value }}
       targetPort: {{ index $root.Values.service.targetPorts $key }}
       protocol: {{ index $root.Values.service.protocol $key | default "TCP" }}
-      name: $key
+      name: {{ $key }}
     {{- end }}
   selector:
     app.kubernetes.io/name: {{ include "generic.name" . }}

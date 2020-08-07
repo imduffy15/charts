@@ -1,3 +1,4 @@
+{{- $root := . -}}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -47,7 +48,7 @@ spec:
           volumeMounts:
           {{ range $key, $value := .Values.persistence }}
           - mountPath: $value.mountPath
-            name: $key
+            name: {{ $key }}
           {{ end }}
           {{- range .Values.hostMounts }}
           {{- if .mountPath }}
@@ -73,7 +74,7 @@ spec:
     {{- end }}
       volumes:
       {{- range $key, $value := .Values.persistence }}
-      - name: $key
+      - name: {{ $key }}
       {{- if $value.enabled }}
         {{- if $value.hostPath }}
         hostPath:
@@ -81,7 +82,7 @@ spec:
           type: Directory
         {{- else }}
         persistentVolumeClaim:
-          claimName: {{ if $value.existingClaim }}{{ $value.existingClaim }}{{- else }}{{ template "generic.fullname" . }}-{{ $key }}{{- end }}
+          claimName: {{ if $value.existingClaim }}{{ $value.existingClaim }}{{- else }}{{ template "generic.fullname" $root }}-{{ $key }}{{- end }}
         {{- end }}
       {{- else }}
         emptyDir: {}
