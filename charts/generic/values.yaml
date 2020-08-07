@@ -19,8 +19,6 @@ securityContext: {}
 
 extraEnv: {}
 
-
-
 hostNetwork: false
 
 hostMounts: []
@@ -35,12 +33,11 @@ serviceAccount:
 service:
   type: LoadBalancer
   annotations: {}
+  address: ""
   ports:
-    http: 9981
-    htsp: 9982
+    http: 80
   targetPorts:
     http: http
-    htsp: htsp
   protocol: {}
 
 resources: {}
