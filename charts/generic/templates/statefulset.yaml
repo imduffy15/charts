@@ -78,7 +78,7 @@ spec:
       {{- if $value.enabled }}
         {{- if $value.hostPath }}
         hostPath:
-          path: {{ $value.hostPath}}
+          path: {{ $value.hostPath }}
           type: Directory
         {{- else }}
         persistentVolumeClaim:
