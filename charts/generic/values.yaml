@@ -31,7 +31,7 @@ serviceAccount:
   name:
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   annotations: {}
   address: ""
   ports: {}

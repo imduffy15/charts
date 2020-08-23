@@ -47,7 +47,7 @@ spec:
           {{- end }}
           volumeMounts:
           {{ range $key, $value := .Values.persistence }}
-          - mountPath: $value.mountPath
+          - mountPath: {{ $value.mountPath }}
             name: {{ $key }}
           {{ end }}
           {{- range .Values.hostMounts }}
