@@ -16,9 +16,9 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "mosquitto.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
-    annotations:
-      checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum | quote }}
-      checksum/secrets: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum | quote }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum | quote }}
+        checksum/secrets: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum | quote }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -66,7 +66,8 @@ spec:
         configMap:
           name: {{ include "mosquitto.fullname" . }}
       - name: certificates
-        secretName: {{ template "mosquitto.secretName" . }}
+        secret:
+          secretName: {{ template "mosquitto.secretName" . }}
       - name: data
       {{- if .Values.persistence.enabled }}
         {{- if .Values.persistence.hostPath }}
