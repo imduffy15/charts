@@ -34,19 +34,19 @@ config:
   keyfile: privkey.pem
   require_certificate: false
 
-certs:
-  cafile: |-
-    -----BEGIN CERTIFICATE-----
-    CA_CERT
-    -----END CERTIFICATE-----
-  certfile: |-
-    -----BEGIN CERTIFICATE-----
-    SERVER_CERT
-    -----END CERTIFICATE-----
-  keyfile: |-
-    -----BEGIN CERTIFICATE-----
-    SERVER_KEY
-    -----END CERTIFICATE-----
+certs: {}
+  # cafile: |-
+  #   -----BEGIN CERTIFICATE-----
+  #   CA_CERT
+  #   -----END CERTIFICATE-----
+  # certfile: |-
+  #   -----BEGIN CERTIFICATE-----
+  #   SERVER_CERT
+  #   -----END CERTIFICATE-----
+  # keyfile: |-
+  #   -----BEGIN CERTIFICATE-----
+  #   SERVER_KEY
+  #   -----END CERTIFICATE-----
 
 existingSecret: ""
 

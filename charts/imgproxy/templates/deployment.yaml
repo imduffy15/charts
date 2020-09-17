@@ -1,0 +1,85 @@
+apiVersion: {{ .Values.apiVersion }}
+kind: Deployment
+metadata:
+  name: {{ template "imgproxy.fullname" . }}
+  labels:
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+    app: {{ template "imgproxy.fullname" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "imgproxy.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "imgproxy.fullname" . }}
+        release: {{ .Release.Name | quote }}
+{{- if .Values.annotations }}
+      annotations:
+        {{- range $key, $value := .Values.annotations }}
+        {{ $key }}: {{ $value | quote }}
+        {{- end }}
+{{- end }}
+    spec:
+    {{- if .Values.affinity }}
+      affinity:
+{{ toYaml .Values.affinity | indent 8 }}
+    {{- end }}
+    {{- if .Values.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+    {{- end }}
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+    {{- end }}
+{{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      - name: "{{ .Release.Name }}-docker-registry-secret"
+{{- end }}
+      containers:
+      - name: "imgproxy"
+        image: "{{ .Values.image.repo }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        {{- if .Values.enablePrometheus }}
+        - containerPort: 8081
+          name: metrics
+          protocol: TCP
+        {{- end }}
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+            httpHeaders:
+            - name: Authorization
+              value: Bearer {{ .Values.secret }}
+          {{- with .Values.readinessProbe }}
+          initialDelaySeconds: {{ .initialDelaySeconds | default 10 }}
+          timeoutSeconds: {{ .timeoutSeconds | default 5}}
+          successThreshold: {{ .successThreshold | default 1 }}
+          failureThreshold: {{ .failureThreshold | default 5 }}
+          {{- end }}
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+            httpHeaders:
+            - name: Authorization
+              value: Bearer {{ .Values.secret }}
+          {{- with .Values.livenessProbe }}
+          initialDelaySeconds: {{ .initialDelaySeconds | default 50 }}
+          timeoutSeconds: {{ .timeoutSeconds | default 5}}
+          successThreshold: {{ .successThreshold | default 1 }}
+          failureThreshold: {{ .failureThreshold | default 5 }}
+          {{- end }}
