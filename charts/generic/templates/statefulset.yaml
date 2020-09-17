@@ -11,6 +11,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: {{ include "generic.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
+  serviceName: {{ include "generic.name" . }}
   template:
     metadata:
       labels:
