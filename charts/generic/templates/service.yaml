@@ -1,26 +1,33 @@
 {{- $root := . -}}
+{{ range $index, $value := .Values.services }}
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "generic.fullname" . }}
-{{- if .Values.service.annotations }}
+  name: {{ include "generic.fullname" $root }}-{{ $index }}
+{{- if $value.annotations }}
   annotations:
-  {{- range $key, $value := .Values.service.annotations }}
-    {{ $key }}: {{ $value | quote }}
+  {{- range $annotationName, $annotationValue := $value.annotations }}
+    {{ $annotationName }}: {{ $annotationValue | quote }}
   {{- end }}
 {{- end }}
   labels:
-{{ include "generic.labels" . | indent 4 }}
+{{ include "generic.labels" $root | indent 4 }}
 spec:
-  type: {{ .Values.service.type }}
-  loadBalancerIP: {{ .Values.service.address }}
+  type: {{ $value.type }}
+  loadBalancerIP: {{ $value.address }}
   ports:
-    {{- range $key, $value := .Values.service.ports }}
-    - port: {{ $value }}
-      targetPort: {{ index $root.Values.service.targetPorts $key }}
-      protocol: {{ index $root.Values.service.protocol $key | default "TCP" }}
-      name: {{ $key }}
+    {{- range $portName, $portNumber := $value.ports }}
+    - port: {{ $portNumber }}
+      targetPort: {{ index $value.targetPorts $portName }}
+      {{- if $value.protocol }}
+      protocol: {{ index $value.protocol $portName | default "TCP" }}
+      {{- else }}
+      protocol: TCP
+      {{- end }}
+      name: {{ $portName }}
     {{- end }}
   selector:
-    app.kubernetes.io/name: {{ include "generic.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ include "generic.name" $root }}
+    app.kubernetes.io/instance: {{ $root.Release.Name }}
+{{- end }}

@@ -17,6 +17,8 @@ spec:
       labels:
         app.kubernetes.io/name: {{ include "generic.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        checksum/secrets: {{ include (print $.Template.BasePath "/secrets.yaml") . | sha256sum | quote }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -41,12 +43,20 @@ spec:
               value: {{ $value | quote }}
             {{- end }}
           ports:
-          {{- range $key, $value := .Values.service.ports }}
-            - name: {{ $key }}
-              containerPort: {{ $value }}
-              protocol: TCP
+          {{- range $key, $value := .Values.services }}
+          {{- range $portName, $portNumber := $value.ports }}
+            - name: {{ $portName }}
+              containerPort: {{ $portNumber }}
+              {{ if $value.protocol -}}
+                protocol: {{ index $value.protocol $portName | default "TCP" }}
+              {{ else -}}
+                protocol: "TCP"
+              {{ end -}}
+          {{- end }}
           {{- end }}
           volumeMounts:
+          - mountPath: {{ .Values.secretMountPath }}
+            name: secrets
           {{ range $key, $value := .Values.persistence }}
           - mountPath: {{ $value.mountPath }}
             name: {{ $key }}
@@ -74,6 +84,9 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       volumes:
+      - name: secrets
+        secret:
+          secretName: {{ template "generic.fullname" . }}
       {{- range $key, $value := .Values.persistence }}
       - name: {{ $key }}
       {{- if $value.enabled }}
