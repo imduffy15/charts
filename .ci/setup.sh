@@ -3,7 +3,7 @@
 set -e
 set -o pipefail
 
-[ -z "$HELM_VERSION" ] && HELM_VERSION=3.3.2
+[ -z "$HELM_VERSION" ] && HELM_VERSION=3.4.2
 
 echo "HELM_VERSION=$HELM_VERSION"
 
