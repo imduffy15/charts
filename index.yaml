@@ -3,7 +3,7 @@ entries:
   cert-manager:
   - apiVersion: v1
     appVersion: v1.0.1
-    created: "2020-11-02T18:09:40.738635574Z"
+    created: "2020-12-13T00:05:22.687474657Z"
     description: A Helm chart for cert-manager
     digest: 0f1e9b098b080e04faf3a6fcd906e7f84da9326f0db9d780ba099b7e66710573
     home: https://github.com/jetstack/cert-manager
@@ -24,7 +24,7 @@ entries:
     version: v1.0.1
   generic:
   - apiVersion: v1
-    created: "2020-11-02T18:09:40.74251319Z"
+    created: "2020-12-13T00:05:22.691210394Z"
     description: Generic chart
     digest: cbe3d70a8c003eb608b9e5ae0478e8287c68f4b215423bc17a0f2d4bb9d7e909
     home: https://github.com/imduffy15/charts/generic
@@ -39,7 +39,7 @@ entries:
     - generic/generic-0.0.8.tgz
     version: 0.0.8
   - apiVersion: v1
-    created: "2020-11-02T18:09:40.741971261Z"
+    created: "2020-12-13T00:05:22.690708466Z"
     description: Generic chart
     digest: 13dd07838cf03cff5be1ff58dd152d7ca84ab119211cbc2513d66ebf2acddbbc
     home: https://github.com/imduffy15/charts/generic
@@ -54,7 +54,7 @@ entries:
     - generic/generic-0.0.7.tgz
     version: 0.0.7
   - apiVersion: v1
-    created: "2020-11-02T18:09:40.741528833Z"
+    created: "2020-12-13T00:05:22.690210332Z"
     description: Generic chart
     digest: f7f9078bf66023947ca7ad2d5823d8f856d10f32bd97924d5b92377a8cbbcbb5
     home: https://github.com/imduffy15/charts/generic
@@ -69,7 +69,7 @@ entries:
     - generic/generic-0.0.6.tgz
     version: 0.0.6
   - apiVersion: v1
-    created: "2020-11-02T18:09:40.741102251Z"
+    created: "2020-12-13T00:05:22.689757326Z"
     description: Generic chart
     digest: d57672d532cdc4d3ca8f60f21c1793e65f56d50d62dc649d9dbf8233a1af05e4
     home: https://github.com/imduffy15/charts/generic
@@ -84,7 +84,7 @@ entries:
     - generic/generic-0.0.5.tgz
     version: 0.0.5
   - apiVersion: v1
-    created: "2020-11-02T18:09:40.740625499Z"
+    created: "2020-12-13T00:05:22.689361783Z"
     description: Generic chart
     digest: e5ddaca29f0ad940c9b02c19f65964c31bfcd42f0380efaf06826346b96bcf34
     home: https://github.com/imduffy15/charts/generic
@@ -99,7 +99,7 @@ entries:
     - generic/generic-0.0.4.tgz
     version: 0.0.4
   - apiVersion: v1
-    created: "2020-11-02T18:09:40.740192706Z"
+    created: "2020-12-13T00:05:22.688928667Z"
     description: Generic chart
     digest: 7f6a0249592b5cb6796063ac032eb9dcd4d7b7b53ca5f63e73af96878bcd46ba
     home: https://github.com/imduffy15/charts/generic
@@ -114,7 +114,7 @@ entries:
     - generic/generic-0.0.3.tgz
     version: 0.0.3
   - apiVersion: v1
-    created: "2020-11-02T18:09:40.739671813Z"
+    created: "2020-12-13T00:05:22.688450846Z"
     description: Generic chart
     digest: e19cfd256c35a88e34c185e9a22142bdb4be96ac5cf59a26317b45b5cbe2109f
     home: https://github.com/imduffy15/charts/generic
@@ -129,7 +129,7 @@ entries:
     - generic/generic-0.0.2.tgz
     version: 0.0.2
   - apiVersion: v1
-    created: "2020-11-02T18:09:40.739211155Z"
+    created: "2020-12-13T00:05:22.687994925Z"
     description: Generic chart
     digest: 0b6b1a7eaf37e06d344907fc6d6286fe595afca8fb994480c471aec0f8f86ceb
     home: https://github.com/imduffy15/charts/generic
@@ -146,7 +146,32 @@ entries:
   home-assistant:
   - apiVersion: v1
     appVersion: 0.112.4
-    created: "2020-11-02T18:09:40.74493458Z"
+    created: "2020-12-13T00:05:22.696243837Z"
+    description: Home Assistant
+    digest: 4a318b2250a013cc80574d1e2c9cfbb1186427eb505686e8b0e77987404ef182
+    home: https://github.com/billimek/billimek-charts/tree/master/charts/home-assistant
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Home_Assistant_Logo.svg/519px-Home_Assistant_Logo.svg.png
+    keywords:
+    - home-assistant
+    - hass
+    - homeassistant
+    maintainers:
+    - email: jeff@billimek.com
+      name: billimek
+    - email: phil@hellmi.de
+      name: runningman84
+    name: home-assistant
+    sources:
+    - https://github.com/home-assistant/home-assistant
+    - https://github.com/danielperna84/hass-configurator
+    - https://github.com/cdr/code-server
+    - https://github.com/billimek/billimek-charts/tree/master/charts/home-assistant
+    urls:
+    - home-assistant/home-assistant-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v1
+    appVersion: 0.112.4
+    created: "2020-12-13T00:05:22.693898839Z"
     description: Home Assistant
     digest: 8c2573cb55e3b253e89a55caae4a4d7e280f991f2e6c56af33bd071eded273d9
     home: https://github.com/billimek/billimek-charts/tree/master/charts/home-assistant
@@ -171,7 +196,7 @@ entries:
     version: 1.0.3
   - apiVersion: v1
     appVersion: 0.112.4
-    created: "2020-11-02T18:09:40.743746553Z"
+    created: "2020-12-13T00:05:22.692459682Z"
     description: Home Assistant
     digest: b6838c1c303ea7db4f7bc48fc14f47464a8be544d9eb072a4e04efb4f3bff36a
     home: https://github.com/billimek/billimek-charts/tree/master/charts/home-assistant
@@ -197,7 +222,7 @@ entries:
   imgproxy:
   - apiVersion: v1
     appVersion: 2.13.1
-    created: "2020-11-02T18:09:40.746065734Z"
+    created: "2020-12-13T00:05:22.698837916Z"
     description: A fast and secure standalone server for resizing and converting remote
       images. The main principles of imgproxy are simplicity, speed, and security.
     digest: f97779dc65e5d7a96f849dc2193f944172129a2f3905d8f4ebbb6b04914c5945
@@ -221,7 +246,7 @@ entries:
   mosquitto:
   - apiVersion: v1
     appVersion: v5.1
-    created: "2020-11-02T18:09:40.74931911Z"
+    created: "2020-12-13T00:05:22.703050801Z"
     description: An Open Source MQTT broker.
     digest: 09931ec5627fc02ab89de549cec62e489a08e642a82fca52590e864fc7e577fb
     home: https://github.com/imduffy15/charts/mosquitto
@@ -240,7 +265,7 @@ entries:
     version: 0.0.6
   - apiVersion: v1
     appVersion: v5.1
-    created: "2020-11-02T18:09:40.748725241Z"
+    created: "2020-12-13T00:05:22.702437052Z"
     description: An Open Source MQTT broker.
     digest: 22fc74e7deabb8e1da96b5426d46657bb535a396d71aea803a779842b0902439
     home: https://github.com/imduffy15/charts/mosquitto
@@ -259,7 +284,7 @@ entries:
     version: 0.0.5
   - apiVersion: v1
     appVersion: v5.1
-    created: "2020-11-02T18:09:40.748168771Z"
+    created: "2020-12-13T00:05:22.701888695Z"
     description: An Open Source MQTT broker.
     digest: ad4dc315ee1f1f99ab2c89d365308c7ec0fa4c03873820fcbbd5dc1ee6f77a7a
     home: https://github.com/imduffy15/charts/mosquitto
@@ -278,7 +303,7 @@ entries:
     version: 0.0.4
   - apiVersion: v1
     appVersion: v5.1
-    created: "2020-11-02T18:09:40.747617569Z"
+    created: "2020-12-13T00:05:22.701346218Z"
     description: An Open Source MQTT broker.
     digest: 522c1497af380d797b71c5bb6a89fd6dedd4f4d33148aa7c2cf03f70d788ee4c
     home: https://github.com/imduffy15/charts/mosquitto
@@ -297,7 +322,7 @@ entries:
     version: 0.0.3
   - apiVersion: v1
     appVersion: v5.1
-    created: "2020-11-02T18:09:40.747077344Z"
+    created: "2020-12-13T00:05:22.70072868Z"
     description: An Open Source MQTT broker.
     digest: 6586f1bb5cb0a8f8b2d754a49d7130a509352e4fff0f3a7d33c0e1340c9a1852
     home: https://github.com/imduffy15/charts/mosquitto
@@ -316,7 +341,7 @@ entries:
     version: 0.0.2
   - apiVersion: v1
     appVersion: v5.1
-    created: "2020-11-02T18:09:40.74657684Z"
+    created: "2020-12-13T00:05:22.700126491Z"
     description: An Open Source MQTT broker.
     digest: df3e2a3db88010f1f21ac87785f616f45d7ec240ddc0d6ccc5d6fa07b10eb9be
     home: https://github.com/imduffy15/charts/mosquitto
@@ -335,7 +360,7 @@ entries:
     version: 0.0.1
   powerdns:
   - apiVersion: v1
-    created: "2020-11-02T18:09:40.754581168Z"
+    created: "2020-12-13T00:05:22.708087407Z"
     dependencies:
     - condition: mariadb.enabled
       name: mariadb
@@ -355,7 +380,7 @@ entries:
     - powerdns/powerdns-0.0.2.tgz
     version: 0.0.2
   - apiVersion: v1
-    created: "2020-11-02T18:09:40.751935788Z"
+    created: "2020-12-13T00:05:22.705568874Z"
     dependencies:
     - condition: mariadb.enabled
       name: mariadb
@@ -377,7 +402,7 @@ entries:
   tasmoadmin:
   - apiVersion: v1
     appVersion: v1.6.3
-    created: "2020-11-02T18:09:40.755064237Z"
+    created: "2020-12-13T00:05:22.708530626Z"
     description: Centrally manage all your Sonoff-Tasmota devices.
     digest: 96c9ea8cd76e3c7d8d0a72f7bb11222d0362a5ea98771d3287fb5d0d95fac108
     home: https://github.com/imduffy15/charts/tasmoadmin
@@ -397,7 +422,7 @@ entries:
   tvheadend:
   - apiVersion: v1
     appVersion: v4.2
-    created: "2020-11-02T18:09:40.755619988Z"
+    created: "2020-12-13T00:05:22.709075824Z"
     description: TVHeadend, sometimes TVH for short, is a server application that
       reads video streams from LinuxTV sources and publishes them as internet streams
     digest: c8fad59504f6d0ffcbf4c7d29bbb303e0289e41d7841e779ea393749939d0f7b
@@ -415,4 +440,4 @@ entries:
     urls:
     - tvheadend/tvheadend-0.0.1.tgz
     version: 0.0.1
-generated: "2020-11-02T18:09:40.726052398Z"
+generated: "2020-12-13T00:05:22.676423545Z"
