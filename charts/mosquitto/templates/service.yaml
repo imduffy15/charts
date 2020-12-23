@@ -1,35 +1,39 @@
+{{- $root := . -}}
+{{- range $index, $service := .Values.services }}
+---
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "mosquitto.fullname" . }}
-{{- if .Values.service.annotations }}
+  name: {{ include "mosquitto.fullname" $root }}-{{ $index }}
+{{- if $service.annotations }}
   annotations:
-  {{- range $key, $value := .Values.service.annotations }}
+  {{- range $key, $value := $service.annotations }}
     {{ $key }}: {{ $value | quote }}
   {{- end }}
 {{- end }}
   labels:
-{{ include "mosquitto.labels" . | indent 4 }}
+{{ include "mosquitto.labels" $root | indent 4 }}
 spec:
-  type: {{ .Values.service.type }}
-  loadBalancerIP: {{ .Values.service.address }}
+  type: {{ $service.type }}
+  loadBalancerIP: {{ $service.address }}
   ports:
-    - port: {{ .Values.service.ports.mqtt }}
-      targetPort: {{ .Values.service.targetPorts.mqtt }}
+    - port: {{ $service.ports.mqtt }}
+      targetPort: {{ $service.targetPorts.mqtt }}
       protocol: TCP
       name: mqtt
-    - port: {{ .Values.service.ports.websocket }}
-      targetPort: {{ .Values.service.targetPorts.websocket }}
+    - port: {{ $service.ports.websocket }}
+      targetPort: {{ $service.targetPorts.websocket }}
       protocol: TCP
       name: websocket
-    - port: {{ .Values.service.ports.mqtts }}
-      targetPort: {{ .Values.service.targetPorts.mqtts }}
+    - port: {{ $service.ports.mqtts }}
+      targetPort: {{ $service.targetPorts.mqtts }}
       protocol: TCP
       name: mqtts
-    - port: {{ .Values.service.ports.websockets }}
-      targetPort: {{ .Values.service.targetPorts.websockets }}
+    - port: {{ $service.ports.websockets }}
+      targetPort: {{ $service.targetPorts.websockets }}
       protocol: TCP
       name: websockets      
   selector:
-    app.kubernetes.io/name: {{ include "mosquitto.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/name: {{ include "mosquitto.name" $root }}
+    app.kubernetes.io/instance: {{ $root.Release.Name }}
+{{- end }}

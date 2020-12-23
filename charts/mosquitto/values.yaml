@@ -50,20 +50,20 @@ certs: {}
 
 existingSecret: ""
 
-service:
-  type: LoadBalancer
-  annotations: {}
-  address: ""
-  ports:
-    mqtt: 1883
-    websocket: 1884
-    mqtts: 8883
-    websockets: 8884
-  targetPorts:
-    mqtt: mqtt
-    websocket: websocket
-    mqtts: mqtts
-    websockets: websockets
+services:
+  - type: LoadBalancer
+    annotations: {}
+    address: ""
+    ports:
+      mqtt: 1883
+      websocket: 1884
+      mqtts: 8883
+      websockets: 8884
+    targetPorts:
+      mqtt: mqtt
+      websocket: websocket
+      mqtts: mqtts
+      websockets: websockets
 
 resources: {}
 

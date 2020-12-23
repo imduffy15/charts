@@ -34,7 +34,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
-          {{- range $key, $value := .Values.service.ports }}
+          {{- range $key, $value := (index .Values.services 0).ports }}
             - name: {{ $key }}
               containerPort: {{ $value }}
               protocol: TCP
